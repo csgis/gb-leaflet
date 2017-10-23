@@ -12,7 +12,7 @@ let wms = l => L.tileLayer.wms(l.url, {
   format: 'image/png'
 });
 
-export function gl(layers, mymap) {
+export function gl(layers, map) {
   let leafletLayers = [];
   layers.forEach(l => {
     let layer;
@@ -27,7 +27,7 @@ export function gl(layers, mymap) {
       layer.id = l.id;
       layer.name = l.name;
       leafletLayers.push(layer);
-      layer.addTo(mymap);
+      layer.addTo(map);
     }
   });
 
