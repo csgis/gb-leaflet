@@ -14,7 +14,8 @@
 		"leaflet-switch-scale-control": "victorzinho/leaflet-switch-scale-control#merge",
 		"leaflet-toolbar": "^0.3.0",
 		"leaflet-zoombox": "^0.3.5",
-		"leaflet.coordinates": "0.1.5"
+		"leaflet.coordinates": "0.1.5",
+		"leaflet.wms": "^0.2.0"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
