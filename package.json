@@ -1,7 +1,7 @@
 {
-	"name": "@csgis/gl-leaflet",
+	"name": "@csgis/gb-leaflet",
 	"version": "0.0.1-alpha.1",
-	"repository": "git@github.com:victorzinho/js-boilerplate",
+	"repository": "https://bitbucket.org/csgis/gb-leaflet.git",
 	"author": "Víctor González <victor.gonzalez@geomati.co>",
 	"main": "src/main.js",
 	"dependencies": {
@@ -37,6 +37,7 @@
 		"webpack": "^3.5.6"
 	},
 	"scripts": {
+		"install": "yarn run build",
 		"build": "babel src --out-dir dist --copy-files",
 		"test": "nyc mocha --compilers js:babel-register",
 		"test:all": "yarn run test && yarn run test:browser",
