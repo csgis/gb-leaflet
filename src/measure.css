@@ -1,0 +1,10 @@
+div.leaflet-control-measure>a.leaflet-control-measure-toggle.js-toggle {
+  width: 30px;
+  height: 30px;
+}
+
+div.leaflet-control-measure {
+  border-radius: 2px;
+  border: 2px solid rgba(0, 0, 0, .2);
+  box-shadow: none;
+}
