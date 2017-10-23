@@ -13,7 +13,7 @@ const DEFAULT_MESSAGES = {
 <div>My contact</div>`
 };
 
-export default function (opts) {
+export function gl(opts) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
 
   return LeafletToolbar.ToolbarAction.extend({ // eslint-disable-line no-undef

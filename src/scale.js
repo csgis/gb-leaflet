@@ -3,7 +3,7 @@ import 'leaflet-switch-scale-control';
 import 'leaflet-switch-scale-control/src/L.Control.SwitchScaleControl.css';
 import humanformat from 'human-format';
 
-export default (opts = {}, deps) => deps.map.then(map => {
+export function gl(opts, map) {
   if (opts.bar !== false) L.control.scale().addTo(map);
   if (opts.text !== false) {
     new L.Control.SwitchScaleControl({
@@ -12,4 +12,4 @@ export default (opts = {}, deps) => deps.map.then(map => {
       render: ratio => '1 : ' + humanformat(ratio)
     }).addTo(map);
   }
-});
+}

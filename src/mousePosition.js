@@ -15,4 +15,6 @@ const DEFAULT_OPTS = {
   markerProps: {} // optional default {},
 };
 
-export default (opts, deps) => deps.map.then(map => L.control.coordinates(Object.assign({}, DEFAULT_OPTS, opts)).addTo(map));
+export function gl(opts, map) {
+  L.control.coordinates(Object.assign({}, DEFAULT_OPTS, opts)).addTo(map);
+}

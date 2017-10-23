@@ -18,9 +18,7 @@ function getLegendHtml(layer) {
   return `<div><text>${layer.name}</text><img src="${url}"</div>`;
 }
 
-export default (opts, deps) => Promise.all([
-  deps.map, deps.layers
-]).then(([, layers]) => {
+export function gl(opts, map, layers) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
 
   var div = document.createElement('div');
@@ -42,4 +40,4 @@ export default (opts, deps) => Promise.all([
       transition: null
     }).show()
   });
-});
+}
