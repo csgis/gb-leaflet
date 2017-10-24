@@ -1,0 +1,13 @@
+.attribute-filter-field,.attribute-filter {
+  position: fixed;
+  right: 10px;
+  z-index: 9999;
+}
+
+.attribute-filter {
+  bottom: 20px;
+}
+
+.attribute-filter-field {
+  bottom: 45px;
+}
