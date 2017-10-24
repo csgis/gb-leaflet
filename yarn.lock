@@ -2480,6 +2480,10 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
 
+iso8601-js-period@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/iso8601-js-period/-/iso8601-js-period-0.2.0.tgz#e5740fd4e720b960a85eb685fc205201621c018c"
+
 isobject@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-2.1.0.tgz#f065561096a3f1da2ef46272f815c840d87e0c89"
@@ -2728,6 +2732,13 @@ leaflet-switch-scale-control@victorzinho/leaflet-switch-scale-control#merge:
   dependencies:
     leaflet "^1.0.0"
 
+leaflet-timedimension@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet-timedimension/-/leaflet-timedimension-1.1.0.tgz#9eecbdf9266a2ef14ace8282db1d1bfd5b151006"
+  dependencies:
+    iso8601-js-period "0.2.0"
+    leaflet "~0.7.4 || ~1.0.0"
+
 leaflet-toolbar@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/leaflet-toolbar/-/leaflet-toolbar-0.3.0.tgz#66e3b4fc276bdef954956f4699d1802459c5938c"
@@ -2749,6 +2760,10 @@ leaflet.wms@^0.2.0:
 leaflet@^1.0.0, leaflet@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.2.0.tgz#fd5d93d9cb00091f5f8a69206d0d6744c1c82697"
+
+"leaflet@~0.7.4 || ~1.0.0":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.3.tgz#1f401b98b45c8192134c6c8d69686253805007c8"
 
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"

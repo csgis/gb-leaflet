@@ -12,6 +12,7 @@
 		"leaflet-measure": "^2.1.7",
 		"leaflet-navbar": "davidchouse/Leaflet.NavBar#v1.0.1",
 		"leaflet-switch-scale-control": "victorzinho/leaflet-switch-scale-control#merge",
+		"leaflet-timedimension": "^1.1.0",
 		"leaflet-toolbar": "^0.3.0",
 		"leaflet-zoombox": "^0.3.5",
 		"leaflet.coordinates": "0.1.5",

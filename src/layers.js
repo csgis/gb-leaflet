@@ -1,23 +1,21 @@
 import L from 'leaflet';
-import WMS from 'leaflet.wms';
+import 'leaflet-timedimension/dist/leaflet.timedimension.src';
+import 'leaflet-timedimension/dist/leaflet.timedimension.control.css';
+import 'iso8601-js-period';
 
 let tile = l => L.tileLayer(l.url, {
   id: l.id,
   attribution: l.attribution
 });
 
-let sources = {};
-
 function wms(l) {
-  if (!sources[l.url]) {
-    sources[l.url] = WMS.source(l.url, {
-      transparent: true,
-      format: 'image/png',
-      info_format: 'text/html',
-      feature_count: 10
-    });
-  }
-  return sources[l.url].getLayer(l.layers);
+  let layer = L.tileLayer.wms(l.url, {
+    layers: l.layers,
+    attribution: l.attribution,
+    transparent: true,
+    format: 'image/png'
+  });
+  return l.time ? L.timeDimension.layer.wms(layer) : layer;
 }
 
 export function gl(layers, map) {
