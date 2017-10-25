@@ -1,13 +1,10 @@
-.attribute-filter-field,.attribute-filter {
+.attribute-filter-container {
   position: absolute;
-  right: 10px;
+  top: 10px;
+  left: 100px;
   z-index: 9999;
 }
 
-.attribute-filter {
-  bottom: 20px;
-}
-
-.attribute-filter-field {
-  bottom: 45px;
+.attribute-filter-field, .attribute-filter {
+  display: block
 }

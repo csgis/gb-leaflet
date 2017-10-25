@@ -6,6 +6,7 @@
 	"main": "src/main.js",
 	"dependencies": {
 		"alertifyjs": "^1.11.0",
+		"awesomplete": "^1.1.2",
 		"human-format": "^0.8.0",
 		"leaflet": "^1.2.0",
 		"leaflet-fullscreen": "^1.0.2",
