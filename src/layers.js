@@ -9,12 +9,12 @@ let tile = l => L.tileLayer(l.url, {
 });
 
 function wms(l) {
-  let layer = L.tileLayer.wms(l.url, {
-    layers: l.layers,
+  let layer = L.tileLayer.wms(l.url, Object.assign({}, l.params, {
+    layers: l.params.layers,
     attribution: l.attribution,
-    transparent: true,
-    format: 'image/png'
-  });
+    transparent: l.params.transparent !== false,
+    format: l.params.format || 'image/png'
+  }));
   return l.time ? L.timeDimension.layer.wms(layer) : layer;
 }
 
@@ -32,6 +32,7 @@ export function gl(layers, map) {
     if (layer) {
       layer.id = l.id;
       layer.name = l.name;
+      layer.isBaseLayer = l.isBaseLayer;
       leafletLayers.push(layer);
       layer.addTo(map);
     }
