@@ -70,16 +70,11 @@ export function gl(opts, map, layers) {
       awesomplete.list = [];
       wfs('GetFeature', `propertyName=${field}`).then(function (data) {
         if (!data.features) return;
-        fieldValues[field] = data.features
+        fieldValues[field] = awesomplete.list = data.features
           .map(f => f.properties[field])
           .filter(function (item, pos, self) {
-            return item && self.indexOf(item) === pos;
+            return item !== null && self.indexOf(item) === pos;
           });
-        awesomplete.list = data.features
-          .map(f => f.properties[field])
-          .filter(function (item, pos, self) {
-            return item && self.indexOf(item) === pos;
-          }); // fieldValues[field];
       });
     }
   }
