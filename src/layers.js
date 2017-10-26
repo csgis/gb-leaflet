@@ -1,6 +1,7 @@
 import L from 'leaflet';
 import 'leaflet-timedimension/dist/leaflet.timedimension.src';
 import 'leaflet-timedimension/dist/leaflet.timedimension.control.css';
+import 'leaflet-bing-layer';
 import 'iso8601-js-period';
 
 let tile = l => L.tileLayer(l.url, {
@@ -18,6 +19,10 @@ function wms(l) {
   return l.time ? L.timeDimension.layer.wms(layer) : layer;
 }
 
+function bing(l) {
+  return L.tileLayer.bing(l.key);
+}
+
 export function gl(layers, map) {
   let leafletLayers = [];
   layers.forEach(l => {
@@ -27,6 +32,8 @@ export function gl(layers, map) {
       layer = tile(l);
     } else if (l.type === 'wms') {
       layer = wms(l);
+    } else if (l.type === 'bing') {
+      layer = bing(l);
     }
 
     if (layer) {

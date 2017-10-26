@@ -9,6 +9,7 @@
 		"awesomplete": "^1.1.2",
 		"human-format": "^0.8.0",
 		"leaflet": "^1.2.0",
+		"leaflet-bing-layer": "^3.2.0",
 		"leaflet-fullscreen": "^1.0.2",
 		"leaflet-measure": "^2.1.7",
 		"leaflet-navbar": "davidchouse/Leaflet.NavBar#v1.0.1",
