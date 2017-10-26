@@ -1,7 +1,13 @@
 import L from 'leaflet';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import 'alertifyjs/build/css/themes/bootstrap.css';
 import './legend.css';
+
+alertify.defaults.transition = 'slide';
+alertify.defaults.theme.ok = 'btn btn-primary';
+alertify.defaults.theme.cancel = 'btn btn-danger';
+alertify.defaults.theme.input = 'form-control';
 
 const DEFAULT_MESSAGES = {
   title: 'Legend'

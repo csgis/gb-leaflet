@@ -2,6 +2,7 @@ import 'leaflet';
 import 'leaflet-toolbar';
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import 'alertifyjs/build/css/themes/bootstrap.css';
 import './about.css';
 
 const DEFAULT_MESSAGES = {
@@ -13,6 +14,11 @@ const DEFAULT_MESSAGES = {
 <h2>Contact</h2>
 <div>My contact</div>`
 };
+
+alertify.defaults.transition = 'slide';
+alertify.defaults.theme.ok = 'btn btn-primary';
+alertify.defaults.theme.cancel = 'btn btn-danger';
+alertify.defaults.theme.input = 'form-control';
 
 export function gl(opts) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
