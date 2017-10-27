@@ -20,7 +20,11 @@ function wms(l) {
 }
 
 function bing(l) {
-  return L.tileLayer.bing(l.key);
+  return L.tileLayer.bing({
+    bingMapsKey: l.key,
+    imagerySet: l.set || 'AerialWithLabels',
+    culture: l.culture
+  });
 }
 
 export function gl(layers, map) {
