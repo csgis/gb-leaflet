@@ -35,7 +35,20 @@ function createUI(fields, parent) {
   container.append(select);
   container.append(input);
 
-  let awesomplete = new Awesomplete(input);
+  let awesomplete = new Awesomplete(input, {
+    filter: function (text, i) {
+      return Awesomplete.FILTER_CONTAINS(text, i.match(/[^,]*$/)[0]);
+    },
+
+    item: function (text, i) {
+      return Awesomplete.ITEM(text, i.match(/[^,]*$/)[0]);
+    },
+
+    replace: function (text) {
+      let before = this.input.value.match(/^.+,\s*|/)[0];
+      this.input.value = before + text + ', ';
+    }
+  });
   return { select, awesomplete };
 }
 
@@ -54,7 +67,13 @@ export function gl(opts, map, layers) {
 
   function search() {
     if (select.value && input.value) {
-      layer.setParams({ cql_filter: `${select.value} ILIKE '%${input.value}%'` });
+      layer.setParams({
+        cql_filter: input.value.split(',')
+          .map(v => v.trim())
+          .filter(v => v.length > 0)
+          .map(v => `${select.value} ILIKE '%${v}%'`)
+          .join(' OR ')
+      });
     } else {
       delete layer.wmsParams.cql_filter;
       layer.setParams({});
