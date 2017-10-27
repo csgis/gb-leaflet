@@ -5,7 +5,8 @@ import 'awesomplete/awesomplete.css';
 function json(url) {
   return new Promise(function (resolve) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
+    xhr.open('GET', url, true);
+    xhr.withCredentials = true;
     xhr.onload = function (r) {
       let data = r.currentTarget.response || r.target.responseText;
       resolve(JSON.parse(data));
