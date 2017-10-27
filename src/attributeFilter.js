@@ -7,6 +7,7 @@ function json(url) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.withCredentials = true;
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.onload = function (r) {
       let data = r.currentTarget.response || r.target.responseText;
       resolve(JSON.parse(data));
