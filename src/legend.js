@@ -21,7 +21,7 @@ function getLegendHtml(layer) {
     '&FORMAT=image/png' +
     '&STYLE=' +
     '&LAYER=' + layer.options.layers;
-  return `<div><text>${layer.name}</text><img src="${url}"</div>`;
+  return `<div class="gb-legend"><img src="${url}"><text>${layer.name}</text></div>`;
 }
 
 export function gl(opts, map, layers) {

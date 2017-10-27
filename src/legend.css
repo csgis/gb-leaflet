@@ -1,3 +1,13 @@
 .toolbar-button-legend {
   background: no-repeat center/60% url(images/legend.png);
 }
+
+.gb-legend {
+  line-height: 2.5em;
+  vertical-align: middle;
+}
+
+.gb-legend>img {
+  margin-right: 10px;
+  vertical-align: middle;
+}
