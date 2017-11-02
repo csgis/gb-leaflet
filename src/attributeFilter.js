@@ -1,3 +1,5 @@
+/* eslint-disable new-cap */
+
 import './attributeFilter.css';
 import Awesomplete from 'awesomplete';
 import 'awesomplete/awesomplete.css';
@@ -16,25 +18,34 @@ function json(url) {
   });
 }
 
-function createUI(fields, parent) {
+function createUI(layers, parent) {
+  // Container
   let container = document.createElement('div');
   container.classList = ['attribute-filter-container'];
   parent.append(container);
 
-  let select = document.createElement('select');
-  select.classList = ['attribute-filter-field'];
+  // Select layer
+  let selectLayer = document.createElement('select');
+  selectLayer.classList = ['attribute-filter-layer'];
 
-  fields.forEach(field => {
+  layers.forEach(layer => {
     let option = document.createElement('option');
-    option.innerHTML = field;
-    select.append(option);
+    option.innerHTML = layer.name;
+    option.value = layer.id;
+    selectLayer.append(option);
   });
 
+  // Select field
+  let selectField = document.createElement('select');
+  selectField.classList = ['attribute-filter-field'];
+
+  // Input
   let input = document.createElement('input');
   input.type = 'text';
   input.classList = ['attribute-filter', 'dropdown-input'];
 
-  container.append(select);
+  container.append(selectLayer);
+  container.append(selectField);
   container.append(input);
 
   let awesomplete = new Awesomplete(input, {
@@ -51,15 +62,32 @@ function createUI(fields, parent) {
       this.input.value = before + text + ', ';
     }
   });
-  return { select, awesomplete };
+
+  return { selectField, selectLayer, awesomplete };
 }
 
 export function gl(opts, map, layers) {
-  let layer = layers.filter(l => opts.layer === l.id)[0];
-  let awesomplete;
-  let input;
-  let select;
+  let layer;
   let fieldValues = {};
+  let filteredLayers = layers.filter(l => opts.layers.includes(l.id));
+
+  let { selectField, selectLayer, awesomplete } = createUI(filteredLayers, map.getContainer());
+  if (filteredLayers.length < 2) selectLayer.style.display = 'none';
+  let input = awesomplete.input;
+
+  [input.parentNode, selectLayer, selectField, input].forEach(c => {
+    c.addEventListener('click', e => e.stopPropagation());
+    c.addEventListener('dblclick', e => e.stopPropagation());
+  });
+  input.addEventListener('mouseover', () => map.dragging.disable());
+  input.addEventListener('mouseout', () => map.dragging.enable());
+
+  input.addEventListener('keypress', function (e) {
+    if (e.charCode === 13) search();
+  });
+  input.addEventListener('awesomplete-selectcomplete', search);
+  selectLayer.addEventListener('change', updateFields);
+  selectField.addEventListener('change', updateAutocomplete);
 
   function wfs(request, query) {
     let url = `${layer._url}?service=wfs&version=1.1.0&request=${request}&typeName=${layer.options.layers}&outputFormat=application/json`;
@@ -68,12 +96,12 @@ export function gl(opts, map, layers) {
   }
 
   function search() {
-    if (select.value && input.value) {
+    if (selectField.value && input.value) {
       layer.setParams({
         cql_filter: input.value.split(',')
           .map(v => v.trim())
           .filter(v => v.length > 0)
-          .map(v => `${select.value} ILIKE '%${v}%'`)
+          .map(v => `${selectField.value} ILIKE '%${v}%'`)
           .join(' OR ')
       });
     } else {
@@ -82,8 +110,33 @@ export function gl(opts, map, layers) {
     }
   }
 
+  function updateFields() {
+    if (layer) {
+      delete layer.wmsParams.cql_filter;
+      layer.setParams({});
+    }
+
+    let selectedOption = selectLayer.options[selectLayer.selectedIndex];
+    layer = layers.filter(l => l.id === selectedOption.value)[0];
+    wfs('DescribeFeatureType').then(function (data) {
+      let fields = data.featureTypes[0].properties.map(p => p.name);
+      if (opts && opts.excludeFields) {
+        fields = fields.filter(f => !opts.excludeFields.includes(f));
+      }
+
+      selectField.innerHTML = '';
+      fields.forEach(field => {
+        let option = document.createElement('option');
+        option.innerHTML = field;
+        selectField.append(option);
+      });
+
+      updateAutocomplete();
+    });
+  }
+
   function updateAutocomplete() {
-    let field = select.value;
+    let field = selectField.value;
     if (!field) return;
     if (fieldValues[field]) {
       awesomplete.list = fieldValues[field];
@@ -100,28 +153,5 @@ export function gl(opts, map, layers) {
     }
   }
 
-  wfs('DescribeFeatureType').then(function (data) {
-    let fields = data.featureTypes[0].properties.map(p => p.name);
-    if (opts && opts.excludeFields) {
-      fields = fields.filter(f => !opts.excludeFields.includes(f));
-    }
-
-    ({ select, awesomplete } = createUI(fields, map.getContainer()));
-    input = awesomplete.input;
-
-    [input.parentNode, select, input].forEach(c => {
-      c.addEventListener('click', e => e.stopPropagation());
-      c.addEventListener('dblclick', e => e.stopPropagation());
-    });
-    input.addEventListener('mouseover', () => map.dragging.disable());
-    input.addEventListener('mouseout', () => map.dragging.enable());
-
-    input.addEventListener('keypress', function (e) {
-      if (e.charCode === 13) search();
-    });
-    input.addEventListener('awesomplete-selectcomplete', search);
-    select.addEventListener('change', updateAutocomplete);
-
-    updateAutocomplete();
-  });
+  updateFields();
 }
