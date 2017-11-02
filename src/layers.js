@@ -16,7 +16,11 @@ function wms(l) {
     transparent: l.params.transparent !== false,
     format: l.params.format || 'image/png'
   }));
-  return l.time ? L.timeDimension.layer.wms(layer) : layer;
+  return l.time ? L.timeDimension.layer.wms(layer, {
+    updateTimeDimension: true,
+    setDefaultTime: true,
+    requestTimeFromCapabilities: true
+  }) : layer;
 }
 
 function bing(l) {
