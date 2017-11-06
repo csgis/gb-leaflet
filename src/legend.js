@@ -13,7 +13,8 @@ const DEFAULT_MESSAGES = {
   title: 'Legend'
 };
 
-function getLegendHtml(layer) {
+function getLegendHtml(l) {
+  let layer = l instanceof L.TimeDimension.Layer ? l._currentLayer : l;
   let url = layer._url +
     '?SERVICE=WMS' +
     '&VERSION=1.1.0' +
@@ -21,14 +22,16 @@ function getLegendHtml(layer) {
     '&FORMAT=image/png' +
     '&STYLE=' +
     '&LAYER=' + layer.options.layers;
-  return `<div class="gb-legend"><img src="${url}"><text>${layer.name}</text></div>`;
+  return `<div class="gb-legend"><img src="${url}"><text>${l.name}</text></div>`;
 }
 
 export function gl(opts, map, layers) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
 
   var div = document.createElement('div');
-  div.innerHTML = layers.filter(l => l instanceof L.TileLayer.WMS).map(getLegendHtml).join('');
+  div.innerHTML = layers
+    .filter(l => !l.isBaseLayer && (l instanceof L.TileLayer.WMS || l instanceof L.TimeDimension.Layer))
+    .map(getLegendHtml).join('');
 
   return LeafletToolbar.ToolbarAction.extend({ // eslint-disable-line no-undef
     options: {

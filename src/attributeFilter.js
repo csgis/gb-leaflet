@@ -2,6 +2,7 @@
 
 import './attributeFilter.css';
 import Awesomplete from 'awesomplete';
+import L from 'leaflet';
 import 'awesomplete/awesomplete.css';
 
 function json(url) {
@@ -118,6 +119,7 @@ export function gl(opts, map, layers) {
 
     let selectedOption = selectLayer.options[selectLayer.selectedIndex];
     layer = layers.filter(l => l.id === selectedOption.value)[0];
+    if (layer instanceof L.TimeDimension.Layer) layer = layer._currentLayer;
     wfs('DescribeFeatureType').then(function (data) {
       let fields = data.featureTypes[0].properties.map(p => p.name);
       if (opts && opts.excludeFields) {
