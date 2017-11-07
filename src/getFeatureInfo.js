@@ -29,15 +29,19 @@ export function gl(opts, map, layers) {
     return sourceLayers[source];
   }
 
-  layers.forEach(layer => {
-    if (!opts.layers || !opts.layers.includes(layer.id) || !(layer instanceof L.TileLayer.WMS)) return;
+  layers.forEach(l => {
+    let layer = l;
+    if (layer instanceof L.TimeDimension.Layer) layer = layer._currentLayer;
+    if (!opts.layers || !opts.layers.includes(l.id) || !(layer instanceof L.TileLayer.WMS)) return;
     let source = getSource(layer);
     getLayers(source).push(layer.options.layers);
   });
 
   map.on('click', function (e) {
     let sources = [];
-    map.eachLayer(function (layer) {
+    map.eachLayer(function (l) {
+      let layer = l;
+      if (layer instanceof L.TimeDimension.Layer) layer = layer._currentLayer;
       if (layer instanceof L.TileLayer.WMS) {
         let source = urlSources[layer._url];
         if (source && !sources.includes(source)) sources.push(source);
