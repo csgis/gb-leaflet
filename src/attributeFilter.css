@@ -1,7 +1,7 @@
 .attribute-filter-container {
   position: absolute;
-  bottom: 30px;
-  right: 10px;
+  top: 12px;
+  left: 60px;
   z-index: 400;
 }
 
