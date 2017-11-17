@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import WMS from 'leaflet.wms/src/leaflet.wms';
 
-export function gl(opts, map, layers) {
+export function bricjs(opts, map, layers) {
   // source -> layer names
   let sourceLayers = {};
   // url -> source

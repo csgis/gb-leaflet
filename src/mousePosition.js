@@ -15,6 +15,6 @@ const DEFAULT_OPTS = {
   markerProps: {} // optional default {},
 };
 
-export function gl(opts, map) {
+export function bricjs(opts, map) {
   L.control.coordinates(Object.assign({}, DEFAULT_OPTS, opts)).addTo(map);
 }

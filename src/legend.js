@@ -25,7 +25,7 @@ function getLegendHtml(l) {
   return `<div class="gb-legend"><img src="${url}"><text>${l.name}</text></div>`;
 }
 
-export function gl(opts, map, layers) {
+export function bricjs(opts, map, layers) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
 
   var div = document.createElement('div');

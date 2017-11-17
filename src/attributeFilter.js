@@ -67,7 +67,7 @@ function createUI(layers, parent) {
   return { selectField, selectLayer, awesomplete };
 }
 
-export function gl(opts, map, layers) {
+export function bricjs(opts, map, layers) {
   let layer;
   let fieldValues = {};
   let filteredLayers = layers.filter(l => opts.layers.includes(l.id));

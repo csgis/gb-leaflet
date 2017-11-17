@@ -11,6 +11,6 @@ const DEFAULT_OPTS = {
   secondaryAreaUnit: 'sqmeters'
 };
 
-export function gl(opts, map) {
+export function bricjs(opts, map) {
   return L.control.measure(Object.assign({}, DEFAULT_OPTS, opts)).addTo(map);
 }

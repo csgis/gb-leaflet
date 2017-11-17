@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-export function gl(opts, map, layers) {
+export function bricjs(opts, map, layers) {
   function fill(layerMap, layerArray) {
     layerArray.forEach(l => {
       layerMap[l.name] = l;

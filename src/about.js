@@ -20,7 +20,7 @@ alertify.defaults.theme.ok = 'btn btn-primary';
 alertify.defaults.theme.cancel = 'btn btn-danger';
 alertify.defaults.theme.input = 'form-control';
 
-export function gl(opts) {
+export function bricjs(opts) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
 
   return LeafletToolbar.ToolbarAction.extend({ // eslint-disable-line no-undef

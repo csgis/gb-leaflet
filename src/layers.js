@@ -31,7 +31,7 @@ function bing(l) {
   });
 }
 
-export function gl(layers, map) {
+export function bricjs(layers, map) {
   let leafletLayers = [];
   layers.forEach(l => {
     let layer;

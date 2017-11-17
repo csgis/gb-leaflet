@@ -3,6 +3,6 @@ import 'leaflet-zoombox';
 import 'leaflet-zoombox/L.Control.ZoomBox.css';
 import './zoomBox.css';
 
-export function gl(opts, map) {
+export function bricjs(opts, map) {
   L.control.zoomBox({ modal: false }).addTo(map);
 }

@@ -13,7 +13,7 @@ const DEFAULT_PROVIDER_OPTS = {
   outputFilename: 'map'
 };
 
-export function gl(opts, map) {
+export function bricjs(opts, map) {
   let printProvider = L.print.provider(Object.assign({}, DEFAULT_PROVIDER_OPTS, opts.provider));
   let f = printProvider._getLayers.bind(printProvider);
   let rs = opts.urlRegexes;

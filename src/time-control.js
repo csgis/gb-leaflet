@@ -1,7 +1,7 @@
 import 'leaflet-timedimension/dist/leaflet.timedimension.src';
 import L from 'leaflet';
 
-export function gl(opts, map) {
+export function bricjs(opts, map) {
   let added = false;
   map.timeDimension.on('availabletimeschanged', e => {
     if (!added && e.availableTimes.length) {
