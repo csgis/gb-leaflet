@@ -5,7 +5,7 @@ export function gl(opts, map) {
   let added = false;
   map.timeDimension.on('availabletimeschanged', e => {
     if (!added && e.availableTimes.length) {
-      L.control.timeDimension().addTo(map);
+      L.control.timeDimension(opts).addTo(map);
       added = true;
     }
   });
