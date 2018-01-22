@@ -2,7 +2,7 @@
   position: absolute;
   top: 12px;
   left: 60px;
-  z-index: 400;
+  z-index: 500;
 }
 
 .attribute-filter-field, .attribute-filter {
