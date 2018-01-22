@@ -1,0 +1,11 @@
+a.timecontrol-date {
+  text-overflow: ellipsis;
+  min-width: 110px !important;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.leaflet-bar-timecontrol .timecontrol-dateslider div.slider {
+  width: 150px;
+}

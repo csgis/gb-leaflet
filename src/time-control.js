@@ -1,4 +1,5 @@
 import 'leaflet-timedimension/dist/leaflet.timedimension.src';
+import './time-control.css';
 import L from 'leaflet';
 
 export function bricjs(opts, map) {
