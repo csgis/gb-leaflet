@@ -121,24 +121,31 @@ export function bricjs(opts, map, layers) {
 
     let selectedOption = selectLayer.options[selectLayer.selectedIndex];
     layer = layers.filter(l => l.id === selectedOption.value)[0];
-    layer._timeDimension.on('timeload', function () {
-      if (layer instanceof L.TimeDimension.Layer) layer = layer._currentLayer;
-      wfs('DescribeFeatureType').then(function (data) {
-        let fields = data.featureTypes[0].properties.map(p => p.name);
-        if (opts && opts.excludeFields) {
-          fields = fields.filter(f => !opts.excludeFields.includes(f));
-        }
 
-        selectField.innerHTML = '';
-        fields.forEach(field => {
-          let option = document.createElement('option');
-          option.innerHTML = field;
-          selectField.append(option);
-        });
+    function callback(data) {
+      let fields = data.featureTypes[0].properties.map(p => p.name);
+      if (opts && opts.excludeFields) {
+        fields = fields.filter(f => !opts.excludeFields.includes(f));
+      }
 
-        updateAutocomplete();
+      selectField.innerHTML = '';
+      fields.forEach(field => {
+        let option = document.createElement('option');
+        option.innerHTML = field;
+        selectField.append(option);
       });
-    });
+
+      updateAutocomplete();
+    }
+
+    if (layer instanceof L.TimeDimension.Layer) {
+      layer._timeDimension.on('timeload', function () {
+        layer = layer._currentLayer;
+        wfs('DescribeFeatureType').then(callback);
+      });
+    } else {
+      wfs('DescribeFeatureType').then(callback);
+    }
   }
 
   function updateAutocomplete() {
