@@ -104,7 +104,7 @@ export function bricjs(opts, map, layers) {
         cql_filter: input.value.split(',')
           .map(v => v.trim())
           .filter(v => v.length > 0)
-          .map(v => `${selectField.value} ILIKE '%${v}%'`)
+          .map(v => `${selectField.value}='%${v}%'`)
           .join(' OR ')
       });
     } else {
