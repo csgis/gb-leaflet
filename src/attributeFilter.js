@@ -68,11 +68,13 @@ function createUI(layers, parent) {
 }
 
 export function bricjs(opts, map, layers) {
+  if (!opts.parent) return;
+
   let layer;
   let fieldValues = {};
   let filteredLayers = layers.filter(l => opts.layers.includes(l.id));
 
-  let { selectField, selectLayer, awesomplete } = createUI(filteredLayers, map.getContainer());
+  let { selectField, selectLayer, awesomplete } = createUI(filteredLayers, opts.parent);
   if (filteredLayers.length < 2) selectLayer.style.display = 'none';
   let input = awesomplete.input;
 
