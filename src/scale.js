@@ -9,6 +9,7 @@ export function bricjs(opts = {}, map) {
     new L.Control.SwitchScaleControl({
       recalcOnZoomChange: true,
       recalcOnPositionChange: true,
+      ratioCustomItemText: '1: Custom scale',
       render: ratio => '1 : ' + humanformat(ratio)
     }).addTo(map);
   }
