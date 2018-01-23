@@ -2866,9 +2866,9 @@ leaflet-print@aratcliffe/Leaflet.print:
   version "1.0.0"
   resolved "https://codeload.github.com/aratcliffe/Leaflet.print/tar.gz/7563465d4275b9045632b278930859fdcaaeeb64"
 
-leaflet-switch-scale-control@victorzinho/leaflet-switch-scale-control#merge:
+leaflet-switch-scale-control@victorzinho/leaflet-switch-scale-control:
   version "0.1.0"
-  resolved "https://codeload.github.com/victorzinho/leaflet-switch-scale-control/tar.gz/ef6c6f3e7f7a1bab35ad3e92ae7652775f465b09"
+  resolved "https://codeload.github.com/victorzinho/leaflet-switch-scale-control/tar.gz/2d5b1d5701b98d3c9171b077b4eb1b429f49d428"
   dependencies:
     leaflet "^1.0.0"
 
