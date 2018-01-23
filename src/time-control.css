@@ -9,3 +9,13 @@ a.timecontrol-date {
 .leaflet-bar-timecontrol .timecontrol-dateslider div.slider {
   width: 150px;
 }
+
+a.leaflet-control-timecontrol.time-control-power {
+  background-image: url(images/power.png);
+  cursor: pointer;
+  visibility: visible;
+}
+
+a.leaflet-control-timecontrol.time-control-power.disabled {
+  background-image: url(images/power-gray.png);
+}
