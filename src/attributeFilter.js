@@ -86,7 +86,7 @@ export function bricjs(opts, map, layers) {
   input.addEventListener('mouseout', () => map.dragging.enable());
 
   input.addEventListener('keypress', function (e) {
-    if (e.charCode === 13) search();
+    if (e.which === 13) search();
   });
   input.addEventListener('awesomplete-selectcomplete', search);
   selectLayer.addEventListener('change', updateFields);
