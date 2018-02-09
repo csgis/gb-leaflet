@@ -33,6 +33,11 @@ export function bricjs(opts, map, layers) {
     .filter(l => !l.isBaseLayer && (l instanceof L.TileLayer.WMS || l instanceof L.TimeDimension.Layer))
     .map(getLegendHtml).join('');
 
+  map.on('fullscreenchange', function () {
+    let button = document.getElementsByClassName('toolbar-button-legend')[0];
+    button.style.display = map.isFullscreen() ? 'none' : '';
+  });
+
   return LeafletToolbar.ToolbarAction.extend({ // eslint-disable-line no-undef
     options: {
       toolbarIcon: {

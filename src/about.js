@@ -20,8 +20,13 @@ alertify.defaults.theme.ok = 'btn btn-primary';
 alertify.defaults.theme.cancel = 'btn btn-danger';
 alertify.defaults.theme.input = 'form-control';
 
-export function bricjs(opts) {
+export function bricjs(opts, map) {
   let messages = Object.assign({}, DEFAULT_MESSAGES, opts ? opts.messages : {});
+
+  map.on('fullscreenchange', function () {
+    let button = document.getElementsByClassName('toolbar-button-about')[0];
+    button.style.display = map.isFullscreen() ? 'none' : '';
+  });
 
   return LeafletToolbar.ToolbarAction.extend({ // eslint-disable-line no-undef
     options: {
