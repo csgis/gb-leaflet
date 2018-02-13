@@ -29,6 +29,7 @@ function createUI(layers, parent) {
   let selectLayer = document.createElement('select');
   selectLayer.classList = ['attribute-filter-layer'];
 
+
   layers.forEach(layer => {
     let option = document.createElement('option');
     option.innerHTML = layer.name;
@@ -43,6 +44,7 @@ function createUI(layers, parent) {
   // Input
   let input = document.createElement('input');
   input.type = 'text';
+  input.placeholder = 'Enter (list of) filter values.';
   input.classList = ['attribute-filter', 'dropdown-input'];
 
   container.append(selectLayer);
@@ -75,6 +77,7 @@ export function bricjs(opts, map, layers) {
   let filteredLayers = layers.filter(l => opts.layers.includes(l.id));
 
   let { selectField, selectLayer, awesomplete } = createUI(filteredLayers, opts.parent);
+  resetSelectField();
   if (filteredLayers.length < 2) selectLayer.style.display = 'none';
   let input = awesomplete.input;
 
@@ -113,6 +116,15 @@ export function bricjs(opts, map, layers) {
     }
   }
 
+  function resetSelectField() {
+    selectField.innerHTML = '';
+    let placeholder = document.createElement('option');
+    placeholder.innerHTML = 'Choose attribute field to filter';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    selectField.append(placeholder);
+  }
+
   function updateFields() {
     if (layer) {
       delete layer.wmsParams.cql_filter;
@@ -128,7 +140,7 @@ export function bricjs(opts, map, layers) {
         fields = fields.filter(f => !opts.excludeFields.includes(f));
       }
 
-      selectField.innerHTML = '';
+      resetSelectField();
       fields.forEach(field => {
         let option = document.createElement('option');
         option.innerHTML = field;
