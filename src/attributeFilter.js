@@ -126,7 +126,7 @@ export function bricjs(opts, map, layers) {
   }
 
   function updateFields() {
-    if (layer) {
+    if (layer && layer.wmsParams) {
       delete layer.wmsParams.cql_filter;
       layer.setParams({});
     }
@@ -162,12 +162,12 @@ export function bricjs(opts, map, layers) {
           timeLayer.setOpacity(1);
         });
       });
-    } else {
-      wfs('DescribeFeatureType').then(data => {
-        setOptions(data);
-        updateAutocomplete();
-      });
+      layer = timeLayer._currentLayer;
     }
+    wfs('DescribeFeatureType').then(data => {
+      setOptions(data);
+      updateAutocomplete();
+    });
   }
 
   function updateAutocomplete() {
