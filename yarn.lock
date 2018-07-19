@@ -2329,6 +2329,10 @@ leaflet-print@aratcliffe/Leaflet.print:
   version "1.0.0"
   resolved "https://codeload.github.com/aratcliffe/Leaflet.print/tar.gz/7563465d4275b9045632b278930859fdcaaeeb64"
 
+leaflet-sleep@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/leaflet-sleep/-/leaflet-sleep-0.5.1.tgz#91f8433f38edbb6b8a9b78d3d04ec7396e9f60f6"
+
 leaflet-switch-scale-control@victorzinho/leaflet-switch-scale-control:
   version "0.1.0"
   resolved "https://codeload.github.com/victorzinho/leaflet-switch-scale-control/tar.gz/2d5b1d5701b98d3c9171b077b4eb1b429f49d428"
