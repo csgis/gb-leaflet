@@ -1,6 +1,17 @@
 import L from 'leaflet';
 import WMS from 'leaflet.wms/src/leaflet.wms';
+import {urlify} from './helper'
 
+/* custom callback for leaflet.wms
+ * see: https://github.com/heigeo/leaflet.wms/blob/gh-pages/src/leaflet.wms.js#L213
+ */ 
+function showFeatureInfo(latlng, info) {
+      if (!this._map) {
+          return;
+      }
+      this._map.openPopup(urlify(info), latlng);
+  }
+  
 export function bricjs(opts, map, layers) {
   // source -> layer names
   let sourceLayers = {};
@@ -47,6 +58,6 @@ export function bricjs(opts, map, layers) {
         if (source && !sources.includes(source)) sources.push(source);
       }
     });
-    sources.forEach(s => s.getFeatureInfo(e.containerPoint, e.latlng, sourceLayers[s], s.showFeatureInfo));
+    sources.forEach(s => s.getFeatureInfo(e.containerPoint, e.latlng, sourceLayers[s], showFeatureInfo));
   });
 }
