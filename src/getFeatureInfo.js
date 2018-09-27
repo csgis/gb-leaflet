@@ -9,7 +9,8 @@ function showFeatureInfo(latlng, info) {
       if (!this._map) {
           return;
       }
-      this._map.openPopup(urlify(info), latlng);
+      if( !new RegExp(/<body>\s+<\/body>/g).test(info) )
+        this._map.openPopup(urlify(info), latlng);
   }
   
 export function bricjs(opts, map, layers) {
