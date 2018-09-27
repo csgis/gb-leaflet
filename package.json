@@ -16,7 +16,7 @@
 		"leaflet-navbar": "davidchouse/Leaflet.NavBar#v1.0.1",
 		"leaflet-print": "aratcliffe/Leaflet.print",
 		"leaflet-switch-scale-control": "victorzinho/leaflet-switch-scale-control",
-		"leaflet-timedimension": "^1.1.0",
+		"leaflet-timedimension": "git://github.com/csgis/Leaflet.TimeDimension.git#fix_times_from_capabilities",
 		"leaflet-toolbar": "^0.3.0",
 		"leaflet-zoombox": "^0.3.5",
 		"leaflet.coordinates": "0.1.5",
