@@ -96,9 +96,10 @@ export function bricjs(opts, map, layers) {
   selectField.addEventListener('change', updateAutocomplete);
 
   function wfs(request, query) {
-    let url = `${layer._url}?service=wfs&version=1.1.0&request=${request}&typeName=${layer.options.layers}&outputFormat=application/json`;
-    if (query) url += `&${query}`;
-    return json(url);
+    let paramStart = layer._url.indexOf("access_token") > -1 ? '&' : '?';
+    let url = encodeURIComponent(`${layer._url}${paramStart}service=wfs&version=1.1.0&request=${request}&typeName=${layer.options.layers}&outputFormat=application/json`);
+    let proxy = `/proxy/?url=${url}`;
+    return json(proxy);
   }
 
   function search() {
